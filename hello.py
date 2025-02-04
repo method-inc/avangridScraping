@@ -17,7 +17,7 @@ def main():
 
     platform = input("Enter the number of the platform you would like to search: ")
     if platform == "1":
-        previous_text_search = '"Rochester" AND "Power Outage" AND "RGE"'
+        previous_text_search = '"Local News"'
         previous_result_limit = 20
 
         scraper = SoaxTwitterPhotos(PhotoSearch(PhotoSearchParams()))
@@ -34,6 +34,9 @@ def main():
                 or previous_result_limit
             )
 
+            previous_text_search = search
+            previous_result_limit = resultLimit
+
             params = PhotoSearchParams(
                 count=resultLimit,
                 query=search,
@@ -41,8 +44,8 @@ def main():
                 lang="en",
                 since_id="0",
                 max_id="9999999999999999999",
-                radius="5mi",
-                geocode="43.161030,-77.610924,5mi",  # "37.7749,-122.4194,1mi"
+                radius="20mi",
+                geocode="43.161030,-77.610924,20mi",  # "37.7749,-122.4194,1mi"
             )
 
             scraper.replaceParams(params)
